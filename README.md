@@ -38,19 +38,3 @@ A simple Flask web application.
 
 4. **Access the app:**  
 	Open [http://localhost:5000](http://localhost:5000) in your browser.
-
----
-
-## Stopping and Cleaning Up
-
-- **Stop and remove Docker container:**
-  ```sh
-  docker ps
-  docker stop <container_id>
-  docker rm <container_id>
-  ```
-
-- **Delete Kubernetes resources:**
-  ```sh
-  kubectl delete -f k8s-flask-app.yaml
-  ```
