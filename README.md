@@ -1,23 +1,56 @@
-# Flask Template
+# Flask App
 
-This sample repo contains the recommended structure for a Python Flask project. In this sample, we use `flask` to build a web application and the `pytest` to run tests.
+A simple Flask web application.
 
- For a more in-depth tutorial, see our [Flask tutorial](https://code.visualstudio.com/docs/python/tutorial-flask).
+## Running with Docker
 
- The code in this repo aims to follow Python style guidelines as outlined in [PEP 8](https://peps.python.org/pep-0008/).
+1. **Build the Docker image:**
+	```sh
+	docker build -t dockerhw .
+	```
 
-## Running the Sample
+2. **Run the Docker container:**
+	```sh
+	docker run -p 5000:5000 dockerhw
+	```
 
-To successfully run this example, we recommend the following VS Code extensions:
+3. **Access the app:**  
+	Open [http://localhost:5000](http://localhost:5000) in your browser.
 
-- [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
-- [Python Debugger](https://marketplace.visualstudio.com/items?itemName=ms-python.debugpy)
-- [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance) 
+---
 
-- Open the template folder in VS Code (**File** > **Open Folder...**)
-- Create a Python virtual environment using the **Python: Create Environment** command found in the Command Palette (**View > Command Palette**). Ensure you install dependencies found in the `pyproject.toml` file
-- Ensure your newly created environment is selected using the **Python: Select Interpreter** command found in the Command Palette
-- Run the app using the Run and Debug view or by pressing `F5`
-- To test your app, ensure you have the dependencies from `dev-requirements.txt` installed in your environment
-- Navigate to the Test Panel to configure your Python test or by triggering the **Python: Configure Tests** command from the Command Palette
-- Run tests in the Test Panel or by clicking the Play Button next to the individual tests in the `test_app.py` file
+## Running with Kubernetes
+
+1. **Build the Docker image (if not already built):**
+	```sh
+	docker build -t dockerhw .
+	```
+
+2. **Deploy to Kubernetes:**
+	```sh
+	kubectl apply -f k8s-flask-app.yaml
+	```
+
+3. **Port-forward to access the app:**
+	```sh
+	kubectl port-forward service/flask-app-service 5000:5000
+	```
+
+4. **Access the app:**  
+	Open [http://localhost:5000](http://localhost:5000) in your browser.
+
+---
+
+## Stopping and Cleaning Up
+
+- **Stop and remove Docker container:**
+  ```sh
+  docker ps
+  docker stop <container_id>
+  docker rm <container_id>
+  ```
+
+- **Delete Kubernetes resources:**
+  ```sh
+  kubectl delete -f k8s-flask-app.yaml
+  ```
